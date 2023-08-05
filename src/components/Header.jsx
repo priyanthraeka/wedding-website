@@ -10,13 +10,12 @@ const Header = () => {
     <section>
       <div className="absolute z-10 h-screen w-full min-w-[320px] bg-gradient-to-t from-black via-transparent to-transparent">
         <Card>
-          <div className="z-20 flex h-screen flex-col items-center justify-end gap-2 pb-[250px] text-center text-white">
+          <div className="z-20 flex h-screen flex-col items-center justify-end gap-2 pb-[300px] text-center text-white">
             <p className="font-poppins text-sm tracking-widest md:text-base lg:text-lg">
-              Undangan Pawiwahan
+              THE WEDDING OF
             </p>
-            <h1 className="md:6xl font-allura text-5xl font-bold lg:text-7xl">
-              Dika & Ewikk
-            </h1>
+            <h1 className="font-madi text-6xl">Dika & Ewikk</h1>
+            <p className="font-poppins text-sm">Sabtu, 02 Desember 2023</p>
           </div>
         </Card>
       </div>

@@ -1,20 +1,18 @@
 import cwo from "../assets/cwo.png";
 import cwe from "../assets/cwe.png";
-import flower from "../assets/flower.png";
+import SubHeading from "./atoms/SubHeading";
+
 const Info = () => {
   return (
     <section>
-      <div id="mempelai" className="flex items-center justify-center p-10">
-        <div className="min-w-[320px] max-w-[1024px]">
-          <h1 className="mb-5 text-center font-alexBrush text-3xl font-bold md:text-4xl lg:text-5xl">
-            Om Swastiastu
-          </h1>
-          <p className="mb-3 text-center font-nanumMyeongjo text-sm md:text-base lg:text-lg">
-            Atas Asung Kerta Wara Nugraha Ida Sang Hyang Widhi Wasa / Tuhan Yang
-            Maha Esa <br /> Kami Akan Menyelenggarakan Upacara Manusa Yadnya
-            Pawiwahan Putra Putri Kami
-          </p>
-          <div className="flex flex-wrap items-center justify-center md:flex md:flex-nowrap lg:flex lg:flex-nowrap">
+      <div className="m-auto flex w-full items-center justify-center py-10 lg:w-10/12">
+        <div className="">
+          <SubHeading accent="pink">
+            The honor of your presence is requested.
+            <br />
+            At the marriage of
+          </SubHeading>
+          <div className="grid grid-cols-1 grid-rows-[1fr_0.1fr_1fr] text-[#948285] md:grid-cols-2 md:grid-rows-1">
             {/* Cowo */}
             <div className="flex flex-col items-center text-center">
               <img
@@ -24,15 +22,15 @@ const Info = () => {
                 height={10}
                 className="mb-3 w-11/12"
               />
-              <p className="mb-2 font-ephesis text-2xl font-bold md:text-3xl lg:text-4xl">
+              <p className="mb-2 font-meath text-2xl tracking-wide md:text-3xl lg:text-4xl">
                 I Putu Dika Ariawan, S.M
               </p>
-              <p className="font-nanumMyeongjo text-sm italic md:text-base lg:text-lg">
-                Putra pertama dari pasangan
-                <br />I Nengah Ardana & Ni Wayan Mudi
+              <p className="font-daiBannaSil text-base italic md:text-xl lg:text-2xl">
+                Putri kedua dari pasangan
+                <br />I Ketut Subagia & Ni Luh Simpen
               </p>
             </div>
-            <div className="text-bold mt-5 font-alexBrush text-3xl md:hidden lg:hidden">
+            <div className="text-bold mt-5 flex justify-center font-alexBrush text-5xl md:hidden lg:hidden">
               &
             </div>
             {/* Cewe */}
@@ -44,19 +42,16 @@ const Info = () => {
                 height={10}
                 className="mb-3 w-11/12"
               />
-              <p className="mb-2 font-ephesis text-2xl font-bold md:text-3xl lg:text-4xl">
+              <p className="mb-2 font-meath text-2xl tracking-wide md:text-3xl lg:text-4xl">
                 Ni Kadek Santika Dewi, S.Ak
               </p>
-              <p className="font-nanumMyeongjo text-sm  italic md:text-base lg:text-lg">
+              <p className="font-daiBannaSil text-base italic md:text-xl lg:text-2xl">
                 Putri kedua dari pasangan
                 <br />I Ketut Subagia & Ni Luh Simpen
               </p>
             </div>
           </div>
         </div>
-      </div>
-      <div className="flex w-full items-center justify-center">
-        <img src={flower} alt="Flower" className="w-6/12 md:w-4/12 lg:w-2/12" />
       </div>
     </section>
   );

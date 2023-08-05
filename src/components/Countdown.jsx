@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 
 const Countdown = () => {
-  const TIME = "May 31, 2023";
+  const TIME = "Dec 02, 2023";
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -27,41 +27,38 @@ const Countdown = () => {
 
   return (
     <Card className="flex h-[20vh] w-full flex-col content-center items-center justify-center gap-2 bg-white p-2">
-      <h1 className="mb-5 text-center font-alexBrush text-3xl font-bold md:text-4xl lg:text-5xl">
-        Hitung Mundur
+      <h1 className="mb-5 text-center font-meath text-5xl text-white md:text-4xl lg:text-7xl">
+        Save The Date
       </h1>
-      <div className="flex w-full max-w-[500px] items-center justify-around gap-2 text-xl text-white">
-        <div className="flex w-20 flex-col items-center justify-between rounded-lg border border-[#fcc2fc] bg-[#fcc2fc]">
-          <tt className="font-kaushanScript text-xl lg:text-2xl">
+      <p className="text-center font-vithquki text-base text-white md:text-xl lg:text-xl">
+        In the arithmetic of love, one plus one equals everything,
+        <br />
+        and two minus one equals nothing.
+      </p>
+      <div className="m-auto mt-10 flex w-full max-w-[500px] items-center justify-around gap-2 text-xl text-white">
+        <div className="flex w-20 flex-col items-center justify-between">
+          <p className="font-kalim text-3xl font-thin lg:text-5xl">
             {days < 0 ? "0" : days}
-          </tt>
-          <span className="font-kaushanScript text-sm font-bold lg:text-lg">
-            Hari
-          </span>
+          </p>
+          <span className="font-kalim text-2xl font-thin lg:text-3xl">D</span>
         </div>
-        <div className="flex w-20 flex-col items-center justify-between rounded-lg border border-[#fcc2fc] bg-[#fcc2fc]">
-          <tt className="font-kaushanScript text-xl lg:text-2xl">
+        <div className="flex w-20 flex-col items-center justify-between">
+          <p className="font-kalim text-3xl font-thin lg:text-5xl">
             {hours < 0 ? "0" : hours}
-          </tt>
-          <span className="font-kaushanScript text-sm font-bold lg:text-lg">
-            Jam
-          </span>
+          </p>
+          <span className="font-kalim text-2xl font-thin lg:text-3xl">H</span>
         </div>
-        <div className="flex w-20 flex-col items-center justify-between rounded-lg border border-[#fcc2fc] bg-[#fcc2fc]">
-          <tt className="font-kaushanScript text-xl lg:text-2xl">
+        <div className="flex w-20 flex-col items-center justify-between">
+          <p className="font-kalim text-3xl font-thin lg:text-5xl">
             {minutes < 0 ? "0" : minutes}
-          </tt>
-          <span className="font-kaushanScript text-sm font-bold lg:text-lg">
-            Menit
-          </span>
+          </p>
+          <span className="font-kalim text-2xl font-thin lg:text-3xl">M</span>
         </div>
-        <div className="flex w-20 flex-col items-center justify-between rounded-lg border border-[#fcc2fc] bg-[#fcc2fc]">
-          <tt className="font-kaushanScript text-xl lg:text-2xl">
+        <div className="flex w-20 flex-col items-center justify-between">
+          <p className="font-kalim text-3xl font-thin lg:text-5xl">
             {seconds < 0 ? "0" : seconds}
-          </tt>
-          <span className="font-kaushanScript text-sm font-bold lg:text-lg">
-            Detik
-          </span>
+          </p>
+          <span className="font-kalim text-2xl font-thin lg:text-3xl">S</span>
         </div>
       </div>
     </Card>

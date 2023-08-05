@@ -29,13 +29,12 @@ const Wrapper = () => {
       <MusicToggler />
       <Header />
       <Info />
-      <Countdown />
       <Receptions />
       <Gallery />
       <Wishes />
       <Wallet />
       <Footer />
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 

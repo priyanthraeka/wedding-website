@@ -12,6 +12,7 @@ import bahasaStrings from "react-timeago/lib/language-strings/id";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PinkCloud from "./atoms/PinkCloud";
 const Wishes = () => {
   const formatter = buildFormatter(bahasaStrings);
   const timestamp = Date.now();
@@ -36,7 +37,7 @@ const Wishes = () => {
 
   const fetchData = async () => {
     const response = await fetch(
-      "https://wedding-website-d7145-default-rtdb.firebaseio.com/data.json"
+      "https://wedding-3f233-default-rtdb.firebaseio.com/data.json"
     );
     const data = await response.json();
 
@@ -53,13 +54,14 @@ const Wishes = () => {
     }
     setData(loadedData);
     setCountedData(loadedData.length);
+    console.log(loadedData);
   };
 
   useEffect(() => {
-    console.log(
-      "Ini adalah proses fetching data saat page pertama kali di-load"
-    );
     fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, 10000);
   }, []);
 
   const nameInputChangeHandler = (e) => {
@@ -107,18 +109,15 @@ const Wishes = () => {
     setNameIsValid(true);
 
     setIsLoading(true);
-    await fetch(
-      "https://wedding-website-d7145-default-rtdb.firebaseio.com/data.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: nameRef.current.value,
-          message: messageRef.current.value,
-          presence: +presence,
-          created_at: timestamp,
-        }),
-      }
-    );
+    await fetch("https://wedding-3f233-default-rtdb.firebaseio.com/data.json", {
+      method: "POST",
+      body: JSON.stringify({
+        name: nameRef.current.value,
+        message: messageRef.current.value,
+        presence: +presence,
+        created_at: timestamp,
+      }),
+    });
     console.log("Proses submit berhasil");
     fetchData();
     console.log("Ini adalah log saat fetching data setelah submit");
@@ -152,28 +151,28 @@ const Wishes = () => {
     .map((item, index) => {
       return (
         <div key={item.id}>
-          <div className="flex flex-col gap-1 px-5 py-3 font-poppins">
-            <div className="flex items-center gap-2 text-[.8rem] md:text-sm lg:text-base">
+          <div className="flex flex-col gap-1 px-5 py-3 font-rubik">
+            <div className="flex items-center gap-2 text-[.8rem] md:text-sm lg:text-sm">
               <div className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap text-sky-600 md:max-w-[500px] lg:max-w-[700px]">
                 {item.name}
               </div>
               {item.presence === 1 ? (
                 <span className="flex items-center gap-1 rounded-sm bg-green-500 px-1 text-white">
-                  <BsFillCheckCircleFill size={12} /> Hadir
+                  <BsFillCheckCircleFill size={10} /> Hadir
                 </span>
               ) : item.presence === 2 ? (
                 <span className="flex items-center gap-1 rounded-sm bg-red-500 px-1 text-white">
-                  <BsFillXCircleFill /> Tidak Hadir
+                  <BsFillXCircleFill size={10} /> Tidak Hadir
                 </span>
               ) : (
                 item.presence === 3 && (
                   <span className="flex items-center gap-1 rounded-sm bg-yellow-500 px-1 text-white">
-                    <BsFillQuestionCircleFill /> Ragu-Ragu
+                    <BsFillQuestionCircleFill size={10} /> Ragu-Ragu
                   </span>
                 )
               )}
             </div>
-            <div className="flex items-center gap-1 text-[.6rem] md:text-[.7rem] lg:text-[.8rem]">
+            <div className="flex items-center gap-1 text-[.6rem] md:text-[.7rem] lg:text-[.7rem]">
               <BsClock />
               <TimeAgo
                 date={item.created_at}
@@ -181,7 +180,7 @@ const Wishes = () => {
                 className="text-slate-600"
               />
             </div>
-            <div className="text-[.8rem] md:text-sm lg:text-base">
+            <div className="text-[.8rem] md:text-sm lg:text-sm">
               {item.message}
             </div>
           </div>
@@ -191,64 +190,42 @@ const Wishes = () => {
         </div>
       );
     });
-
+  // ! Returning
   return (
     <section>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1000 100"
-        preserveAspectRatio="none"
-        className="rotate-180"
-      >
-        <path
-          fill="#FCC2FC"
-          fillOpacity="0.6"
-          d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"
-        ></path>
-        <path
-          fill="#FCC2FC"
-          fillOpacity="0.8"
-          d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"
-        ></path>
-        <path
-          fill="#FCC2FC"
-          fillOpacity="1"
-          d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"
-        ></path>
-      </svg>
+      <PinkCloud />
       <ToastContainer />
       <div
         id="wishes"
         className="flex items-center justify-center bg-[#fcc2fc] p-3"
       >
-        <div className="min-w-[320px] max-w-[1024px]">
+        <div className="w-full min-w-[320px] max-w-[1024px]">
           <div id="ucapan" className="m-auto w-full p-7">
-            <h1 className="mb-5 text-center font-alexBrush text-3xl font-bold md:text-4xl lg:text-5xl">
-              Ucapan
+            <h1 className="mb-5 text-center font-meath text-5xl text-white md:text-6xl lg:text-7xl">
+              Wedding Wish
             </h1>
-            <p className="mb-3 text-center font-nanumMyeongjo text-sm font-bold md:text-base lg:text-lg">
-              Ucapan selamat dan kebahagiaan bisa dari mana saja.
-              <br /> Tanpa berjabat tangan atau pelukan hangat, masih ada
-              simpul-simpul senyum dan doa-doa baik yang kami harapkan.
+            <p className="mb-3 text-center font-daiBannaSil text-base text-white md:text-xl lg:text-2xl">
+              Kirimkan Doa & Ucapan pada Kedua Mempelai
             </p>
           </div>
           {/* Ini adalah modal Chat */}
           <div className="w-full rounded-xl bg-white">
             <div className="px-5 py-3">
-              <p className="flex items-center justify-start gap-2 font-poppins text-[.8rem] font-bold md:text-sm lg:text-base">
-                <FaDove /> {countedData} Ucapan
+              <p className="flex items-center justify-start gap-2 font-rubik text-[.8rem] text-[#555] md:text-sm lg:text-base">
+                <FaDove size={18} color="#555" />{" "}
+                {countedData === 0 ? "0" : countedData} Ucapan
               </p>
             </div>
             <hr className="w-full border-[0.5px] border-[#e0dcd1]" />
             <div className="p-5">
-              <form onSubmit={submitHandler}>
+              <form onSubmit={submitHandler} className="font-rubik">
                 <div className="flex flex-col p-0">
                   <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-2">
                       <input
                         className={
                           nameInputClasses +
-                          " w-full rounded-sm p-1 text-[.8rem] md:text-sm lg:text-base"
+                          " w-full rounded-sm px-2 py-1 text-[.8rem]"
                         }
                         type="text"
                         placeholder="Nama"
@@ -267,7 +244,7 @@ const Wishes = () => {
                       <textarea
                         className={
                           messageInputClasses +
-                          " resize-none rounded-sm p-1 text-[.8rem] md:text-sm lg:text-base"
+                          " resize-none rounded-sm px-2 py-1 text-[.8rem] md:text-sm lg:text-base"
                         }
                         placeholder="Ucapan"
                         cols="30"
@@ -298,7 +275,7 @@ const Wishes = () => {
                     </div>
                   </div>
                   <select
-                    className="mb-5 rounded-sm border border-[#e0dcd1] p-1 font-poppins text-[.8rem] md:text-sm lg:text-base"
+                    className="mb-5 rounded-sm border border-[#e0dcd1] px-2 py-1 text-[.8rem] md:text-sm lg:text-base"
                     defaultValue="3"
                     ref={presenceRef}
                     onChange={presenceInputChangeHandler}
@@ -319,7 +296,9 @@ const Wishes = () => {
               </form>
               {countedData === 0 ? (
                 <p className="text-center font-poppins text-[.8rem] text-slate-600 md:text-sm lg:text-base">
-                  Semua ucapan akan tampil disini. Ingin mengucapkan sesuatu?
+                  Semua ucapan akan tampil disini.
+                  <br />
+                  Ingin mengucapkan sesuatu?
                 </p>
               ) : isLoading ? (
                 <div className="flex items-center justify-center">
